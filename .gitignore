@@ -1,5 +1,4 @@
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -8,6 +7,11 @@ target/
 *.iws
 *.iml
 *.ipr
+
+# Maven Wrapper
+mvnw
+mvnw.cmd
+.mvn/
 
 out/
 Thumbs.db
