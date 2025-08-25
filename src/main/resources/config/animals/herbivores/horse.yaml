@@ -1,0 +1,6 @@
+name: Horse
+icon: "H"
+maxWeight: 400
+maxAmount: 20
+maxSpeed: 4
+maxFood: 60
