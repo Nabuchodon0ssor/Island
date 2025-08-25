@@ -1,6 +1,6 @@
 package com.game.island.config;
 
-public class AnimalConfig {
+public class OrganismConfig {
     private String name;
     private String icon;
     private double maxWeight;
@@ -29,8 +29,8 @@ public class AnimalConfig {
         return maxWeight;
     }
 
-    public void setMaxWeight(double maxWeight) {
-        this.maxWeight = maxWeight;
+    public void setMaxWeight(double weight) {
+        this.maxWeight = weight;
     }
 
     public int getMaxAmount() {

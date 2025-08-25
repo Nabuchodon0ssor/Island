@@ -1,8 +1,9 @@
-package com.game.island.entities;
+package com.game.island.entities.animals;
+
+import com.game.island.config.OrganismConfig;
 
 public abstract class Predator extends Animal {
-
-    public Predator(double weight, double maxWeight, int x, int y, long id) {
-        super(weight, maxWeight, x, y, id);
+    public Predator(int x, int y, OrganismConfig CONFIG) {
+        super(x, y, CONFIG);
     }
 }

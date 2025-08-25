@@ -7,5 +7,6 @@ module com.game.island {
 
 
     opens com.game.island to javafx.fxml;
+    opens config to com.fasterxml.jackson.databind, com.fasterxml.jackson.dataformat.yaml;
     exports com.game.island;
 }

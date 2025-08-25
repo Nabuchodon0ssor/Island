@@ -1,0 +1,6 @@
+name: Plant
+icon: "P"
+maxWeight: 1
+maxAmount: 200
+maxSpeed: 0
+maxFood: 0
