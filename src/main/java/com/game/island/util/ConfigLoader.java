@@ -9,14 +9,14 @@ import java.io.InputStream;
 public class ConfigLoader {
     private static final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 
-    public static OrganismConfig load(String path) {
-        try (InputStream inputStream = ConfigLoader.class.getClassLoader().getResourceAsStream(path)) {
-            if (inputStream == null) {
-                throw new IllegalArgumentException("File not found: " + path);
+    public static <T> T load(String resourcePath, Class<T> clazz) {
+        try (InputStream in = ConfigLoader.class.getResourceAsStream(resourcePath)) {
+            if (in == null) {
+                throw new IllegalArgumentException("Resource not found: " + resourcePath);
             }
-            return mapper.readValue(inputStream, OrganismConfig.class);
+            return mapper.readValue(in, clazz);
         } catch (IOException e) {
-            throw new RuntimeException("Config loading error: " + path, e);
+            throw new RuntimeException("Failed to load resource: " + resourcePath, e);
         }
     }
 }

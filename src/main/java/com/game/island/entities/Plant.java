@@ -5,7 +5,7 @@ import com.game.island.util.ConfigLoader;
 
 public class Plant extends Organism {
     private static final OrganismConfig CONFIG =
-            ConfigLoader.load("config/organisms/plant.yaml");
+            ConfigLoader.load("/config/organisms/plant.yaml", OrganismConfig.class);
 
     public Plant(int x, int y) {
         super(x, y, CONFIG);

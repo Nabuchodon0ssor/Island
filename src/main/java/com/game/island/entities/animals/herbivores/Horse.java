@@ -8,7 +8,7 @@ import com.game.island.util.ConfigLoader;
 
 public class Horse extends Herbivore {
     private static final OrganismConfig CONFIG =
-            ConfigLoader.load("config/animals/herbivores/horse.yaml");
+            ConfigLoader.load("/config/organisms/animals/herbivores/horse.yaml", OrganismConfig.class);
 
     public Horse(int x, int y) {
         super(x, y, CONFIG);

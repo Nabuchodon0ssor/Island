@@ -1,12 +1,12 @@
 package com.game.island.entities;
 
 import com.game.island.config.OrganismConfig;
-import com.game.island.entities.Reproducible;
+import com.game.island.entities.interfaces.Reproducible;
 
 public abstract class Organism implements Reproducible {
     protected final OrganismConfig CONFIG;
 
-    protected double currentWeight;
+
     protected int x, y;
     private static long counter = 0;
     protected final long id;
@@ -15,8 +15,13 @@ public abstract class Organism implements Reproducible {
         this.CONFIG = CONFIG;
         this.x = x;
         this.y = y;
-        this.currentWeight = CONFIG.getMaxWeight() * 0.7;
+
         this.id = ++counter;
+    }
+
+    @Override
+    public String toString() {
+        return CONFIG.getName();
     }
 
     public int getX() {
@@ -36,13 +41,7 @@ public abstract class Organism implements Reproducible {
     public double getMaxWeight() {return CONFIG.getMaxWeight();}
     public int getMaxAmount() { return CONFIG.getMaxAmount(); }
 
-    public double getCurrentWeight() {
-        return currentWeight;
-    }
-    public void setCurrentWeight(double currentWeight) {
-        double max = CONFIG.getMaxWeight();
-        this.currentWeight = Math.max(0.0, Math.min(currentWeight, max));
-    }
+
 
     public long getId() {
         return id;
