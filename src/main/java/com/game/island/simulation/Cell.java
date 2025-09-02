@@ -8,14 +8,26 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Cell {
+    private final Island island;
     private final int x;
     private final int y;
 
     private final Map<Class<? extends Organism>, List<Organism>> organisms = new ConcurrentHashMap<>();
 
-    public Cell(int x, int y) {
+    public Cell(Island island, int x, int y) {
+        this.island = island;
         this.x = x;
         this.y = y;
+    }
+
+    public Island getIsland() {
+        return island;
+    }
+    public int getX() { return x; }
+    public int getY() { return y; }
+
+    public List<Cell> getNeighbors() {
+        return island.getNeighbors(this);
     }
 
     public synchronized void addOrganism(Organism organism) {
@@ -37,7 +49,7 @@ public class Cell {
     public List<Organism> getAllOrganisms() {
         List<Organism> result = new ArrayList<>();
         for (List<Organism> list : organisms.values()) {
-            synchronized (list) { // защита на случай, если другой поток меняет этот список
+            synchronized (list) {
                 result.addAll(list);
             }
         }

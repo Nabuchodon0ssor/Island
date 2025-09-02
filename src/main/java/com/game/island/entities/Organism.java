@@ -2,6 +2,7 @@ package com.game.island.entities;
 
 import com.game.island.config.OrganismConfig;
 import com.game.island.entities.interfaces.Reproducible;
+import com.game.island.simulation.Cell;
 
 public abstract class Organism implements Reproducible {
     protected final OrganismConfig CONFIG;
@@ -41,7 +42,7 @@ public abstract class Organism implements Reproducible {
     public double getMaxWeight() {return CONFIG.getMaxWeight();}
     public int getMaxAmount() { return CONFIG.getMaxAmount(); }
 
-
+    public abstract void act(Cell currentCell);
 
     public long getId() {
         return id;
