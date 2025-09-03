@@ -20,24 +20,33 @@ public class SimulationEngine {
     }
 
     public void tick() {
+        // 1. Фаза движения
+        runPhase(organism -> organism.move());
+
+        // 2. Фаза питания
+        runPhase(organism -> organism.eat());
+
+        // 3. Фаза размножения
+        runPhase(organism -> organism.reproduce());
+
+        // 4. Фаза потери веса / смерти
+        runPhase(organism -> organism.loseWeight());
+    }
+
+    // Вспомогательный метод
+    private void runPhase(Consumer<Organism> action) {
         List<Future<?>> futures = new ArrayList<>();
-        for (int y = 0; y < island.getHeight(); y++) {
-            for (int x = 0; x < island.getWidth(); x++) {
-                Cell cell = island.getCell(x, y);
 
-                List<Organism> organisms = cell.getAllOrganisms();
-
-
-                for (Organism organism : organisms) {
-                    futures.add(executor.submit(() -> {
-                        organism.act(cell);
-                    }));
-                }
+        for (Cell cell : island.getAllCells()) {
+            for (Organism o : cell.getAllOrganisms()) {
+                futures.add(executor.submit(() -> action.accept(o)));
             }
         }
-        for (Future<?> future : futures) {
+
+        // Ждём завершения всех задач этой фазы
+        for (Future<?> f : futures) {
             try {
-                future.get();
+                f.get();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 System.err.println("Tick interrupted");
@@ -47,6 +56,7 @@ public class SimulationEngine {
             }
         }
     }
+
 
     public void stop() {
         executor.shutdown();
