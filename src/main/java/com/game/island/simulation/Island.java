@@ -1,6 +1,7 @@
 package com.game.island.simulation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Island {
@@ -37,7 +38,7 @@ public class Island {
         List<Cell> neighbors = new ArrayList<>();
 
         int[][] deltas = {
-                {-1, -1}, {0, -1}, {1, -1},
+                {-1,-1},  {0,-1},  {1,-1},
                 {-1, 0},           {1, 0},
                 {-1, 1},  {0, 1},  {1, 1}
         };
@@ -55,6 +56,6 @@ public class Island {
     public int getHeight() { return height; }
 
     public List<Cell> getAllCells() {
-        return allCells;
+        return Collections.unmodifiableList(allCells);
     }
 }
