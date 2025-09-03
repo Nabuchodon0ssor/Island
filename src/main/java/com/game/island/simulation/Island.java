@@ -7,15 +7,19 @@ public class Island {
     private final int width;
     private final int height;
     private final Cell[][] grid;
+    private final List<Cell> allCells;
 
     public Island(int width, int height) {
         this.width = width;
         this.height = height;
         this.grid = new Cell[height][width];
+        this.allCells = new ArrayList<>();
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                grid[y][x] = new Cell(this, x, y);
+                Cell cell = new Cell(this, x, y);
+                grid[y][x] = cell;
+                allCells.add(cell);
             }
         }
     }
@@ -49,4 +53,8 @@ public class Island {
 
     public int getWidth() { return width; }
     public int getHeight() { return height; }
+
+    public List<Cell> getAllCells() {
+        return allCells;
+    }
 }
