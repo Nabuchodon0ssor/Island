@@ -1,50 +1,71 @@
 package com.game.island.entities;
 
 import com.game.island.config.OrganismConfig;
+import com.game.island.entities.interfaces.Eater;
+import com.game.island.entities.interfaces.Movable;
 import com.game.island.entities.interfaces.Reproducible;
 import com.game.island.simulation.Cell;
 
-public abstract class Organism implements Reproducible {
+
+public abstract class Organism implements Reproducible, Eater, Movable {
     protected final OrganismConfig CONFIG;
-
-
-    protected int x, y;
+    protected Cell currentCell;
+    protected volatile boolean alive = true;
     private static long counter = 0;
     protected final long id;
 
-    public Organism(int x, int y, OrganismConfig CONFIG) {
+    public Organism(Cell cell, OrganismConfig CONFIG) {
         this.CONFIG = CONFIG;
-        this.x = x;
-        this.y = y;
-
+        this.currentCell = cell;
         this.id = ++counter;
+    }
+
+    public Cell getCell() {
+        return currentCell;
+    }
+
+    public double getMaxWeight() {return CONFIG.getMaxWeight();}
+    public int getMaxAmount() { return CONFIG.getMaxAmount(); }
+    public long getId() {
+        return id;
+    }
+
+
+    /*1*/@Override
+    public void move() {
+        // default, plants don't move
+    }
+
+    /*2*/@Override
+    public void eat() {
+        // default, plants don't eat
+    }
+
+    /*3*/@Override
+    public abstract void reproduce();
+
+    /*4*/
+    public void loseWeight() {
+
+    }
+
+    @Override
+    public abstract boolean canReproduceWith(Organism other);
+
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void die() {
+        alive = false;
+        if (currentCell != null) {
+            currentCell.removeOrganism(this);
+        }
     }
 
     @Override
     public String toString() {
         return CONFIG.getName();
-    }
-
-    public int getX() {
-        return x;
-    }
-    public int getY() {
-        return y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public double getMaxWeight() {return CONFIG.getMaxWeight();}
-    public int getMaxAmount() { return CONFIG.getMaxAmount(); }
-
-    public abstract void act(Cell currentCell);
-
-    public long getId() {
-        return id;
     }
 }

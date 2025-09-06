@@ -1,5 +1,8 @@
 package com.game.island.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class OrganismConfig {
     private String name;
     private String icon;
@@ -7,6 +10,11 @@ public class OrganismConfig {
     private int maxAmount;
     private int maxSpeed;
     private double maxFood;
+    private Map<String, Integer> diet = new HashMap<>();
+
+    public Map<String, Integer> getDiet() {
+        return diet;
+    }
 
     public String getName() {
         return name;

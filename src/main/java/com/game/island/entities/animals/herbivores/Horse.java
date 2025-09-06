@@ -16,11 +16,6 @@ public class Horse extends Herbivore {
 
 
     @Override
-    public void reproduce() {
-
-    }
-
-    @Override
     public boolean canReproduceWith(Organism other) {
         return false;
     }

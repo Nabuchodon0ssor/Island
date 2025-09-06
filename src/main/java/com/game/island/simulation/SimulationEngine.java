@@ -21,20 +21,12 @@ public class SimulationEngine {
     }
 
     public void tick() {
-        // 1. Фаза движения
-        runPhase(organism -> organism.move());
-
-        // 2. Фаза питания
-        runPhase(organism -> organism.eat());
-
-        // 3. Фаза размножения
-        runPhase(organism -> organism.reproduce());
-
-        // 4. Фаза потери веса / смерти
-        runPhase(organism -> organism.loseWeight());
+        runPhase(Organism::move);
+        runPhase(Organism::eat);
+        runPhase(Organism::reproduce);
+        runPhase(Organism::loseWeight);
     }
 
-    // Вспомогательный метод
     private void runPhase(Consumer<Organism> action) {
         List<Future<?>> futures = new ArrayList<>();
 
