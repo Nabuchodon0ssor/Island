@@ -17,7 +17,10 @@ public class SimulationEngine {
 
     public SimulationEngine(Island island, int threadCount) {
         this.island = island;
-        this.executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        int threads = (threadCount > 0)
+                ? threadCount
+                : Runtime.getRuntime().availableProcessors();
+        this.executor = Executors.newFixedThreadPool(threads);
     }
 
     public void tick() {
@@ -36,7 +39,6 @@ public class SimulationEngine {
             }
         }
 
-        // Ждём завершения всех задач этой фазы
         for (Future<?> f : futures) {
             try {
                 f.get();

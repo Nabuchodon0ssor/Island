@@ -3,6 +3,8 @@ import com.game.island.config.OrganismConfig;
 import com.game.island.entities.Organism;
 import com.game.island.simulation.Cell;
 
+import java.util.List;
+
 
 public abstract class Animal extends Organism {
     protected double currentWeight;
@@ -28,6 +30,7 @@ public abstract class Animal extends Organism {
     public int getMaxSpeed() { return CONFIG.getMaxSpeed(); }
 
     public double getMaxFood() { return CONFIG.getMaxFood(); }
+
     public double getFoodCapacity() {
         double stomachCapacity = CONFIG.getMaxFood();
         double weightCapacity = getMaxWeight() - getCurrentWeight();
@@ -43,6 +46,25 @@ public abstract class Animal extends Organism {
 
     /*3*/@Override
     public void reproduce() {
+        List<Organism> animals = currentCell.getOrganismsByType(this.getClass());
+
+        if (animals.size() >= 2 && animals.size() < getMaxAmount()) {
+            double chance = getReproduceChance();
+            if (Math.random() < chance) {
+                    Animal child = createChild(currentCell);
+                    currentCell.addOrganism(child);
+            }
+        }
+    }
+
+    public Animal createChild(Cell cell) {
+        try {
+            return this.getClass()
+                    .getConstructor(Cell.class)
+                    .newInstance(cell);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create child for " + this.getClass().getSimpleName(), e);
+        }
     }
 
     /*4*/

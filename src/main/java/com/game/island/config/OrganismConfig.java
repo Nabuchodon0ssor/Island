@@ -10,6 +10,7 @@ public class OrganismConfig {
     private int maxAmount;
     private int maxSpeed;
     private double maxFood;
+    private double reproduceChance;
     private Map<String, Integer> diet = new HashMap<>();
 
     public Map<String, Integer> getDiet() {
@@ -33,5 +34,9 @@ public class OrganismConfig {
     }
     public double getMaxFood() {
         return maxFood;
+    }
+
+    public double getReproduceChance() {
+        return reproduceChance;
     }
 }

@@ -29,6 +29,7 @@ public abstract class Organism implements Reproducible, Eater, Movable {
     public long getId() {
         return id;
     }
+    public double getReproduceChance(){return CONFIG.getReproduceChance();}
 
 
     /*1*/@Override
@@ -46,7 +47,7 @@ public abstract class Organism implements Reproducible, Eater, Movable {
 
     /*4*/
     public void loseWeight() {
-
+        // default, plants don't lose weight (here)
     }
 
     @Override
