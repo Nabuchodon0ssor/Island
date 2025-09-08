@@ -31,4 +31,27 @@ public abstract class Herbivore extends Animal {
         }
     }
 
+
+
+    protected boolean isCellSuitable(Cell cell) {
+        return hasEnoughFood(cell) &&
+                safeFromPredators(cell) &&
+                enoughMates(cell);
+    }
+
+    private boolean hasEnoughFood(Cell cell) {
+
+        return false;
+    }
+
+    private boolean safeFromPredators(Cell cell) {
+
+        return false;
+    }
+
+    private boolean enoughMates(Cell cell) {
+
+        return false;
+    }
+
 }

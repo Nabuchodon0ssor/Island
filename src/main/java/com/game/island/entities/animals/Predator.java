@@ -37,4 +37,21 @@ public abstract class Predator extends Animal {
             }
         }
     }
+
+
+    protected boolean isCellSuitable(Cell cell) {
+        return hasEnoughPrey(cell) && enoughMates(cell);
+    }
+
+    private boolean hasEnoughPrey(Cell cell) {
+
+        return false;
+    }
+
+    private boolean enoughMates(Cell cell) {
+
+        return false;
+    }
+
+
 }

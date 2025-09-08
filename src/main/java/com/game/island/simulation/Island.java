@@ -49,6 +49,7 @@ public class Island {
                 neighbors.add(neighbor);
             }
         }
+        Collections.shuffle(neighbors);
         return neighbors;
     }
 

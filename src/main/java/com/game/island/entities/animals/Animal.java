@@ -39,7 +39,19 @@ public abstract class Animal extends Organism {
 
     /*1*/@Override
     public void move() {
+        for (int step = 0; step < getMaxSpeed(); step++) {
+            List<Cell> neighbors = currentCell.getNeighbors();
+            Cell nextCell = neighbors.get(0);
+            currentCell.removeOrganism(this);
+            nextCell.addOrganism(this);
+            currentCell = nextCell;
+
+            if (isCellSuitable(currentCell)) {
+                break;
+            }
+        }
     }
+    protected abstract boolean isCellSuitable(Cell cell);
 
     /*2*/@Override
         public abstract void eat();
