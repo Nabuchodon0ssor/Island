@@ -47,7 +47,7 @@ public abstract class Organism implements Reproducible, Eater, Movable {
 
     /*4*/
     public void loseWeight() {
-        // default, plants don't lose weight (here)
+        // default, plants don't lose weight (in this simulation at least)
     }
 
     @Override

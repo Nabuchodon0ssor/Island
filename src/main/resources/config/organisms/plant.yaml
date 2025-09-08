@@ -4,3 +4,4 @@ maxWeight: 1
 maxAmount: 200
 maxSpeed: 0
 maxFood: 0
+reproduceChance: 0.5

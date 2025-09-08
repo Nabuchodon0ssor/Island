@@ -17,11 +17,6 @@ public class Wolf extends Predator {
 
 
     @Override
-    public void reproduce() {
-
-    }
-
-    @Override
     public boolean canReproduceWith(Organism other) {
         return false;
     }

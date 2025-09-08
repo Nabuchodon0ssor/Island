@@ -17,12 +17,10 @@ public class Plant extends Organism implements Reproducible {
 
     @Override
     public void reproduce() {
-        List<Organism> plants = currentCell.getOrganismsByType(Plant.class);
-        if (plants.size() < getMaxAmount()) {
-            if (Math.random() < 0.1) {
-                Plant child = new Plant(currentCell);
-                currentCell.addOrganism(child);
-            }
+        double chance = getReproduceChance(); // читаем из yaml
+        if (Math.random() < chance) {
+            Plant child = new Plant(currentCell);
+            currentCell.addOrganism(child);
         }
     }
 
