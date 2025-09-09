@@ -39,19 +39,10 @@ public abstract class Predator extends Animal {
     }
 
 
+    @Override
     protected boolean isCellSuitable(Cell cell) {
-        return hasEnoughPrey(cell) && enoughMates(cell);
+        return cell.getAllOrganisms().stream()
+                .anyMatch(o -> o instanceof Herbivore);
     }
-
-    private boolean hasEnoughPrey(Cell cell) {
-
-        return false;
-    }
-
-    private boolean enoughMates(Cell cell) {
-
-        return false;
-    }
-
 
 }

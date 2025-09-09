@@ -31,27 +31,15 @@ public abstract class Herbivore extends Animal {
         }
     }
 
-
-
+    @Override
     protected boolean isCellSuitable(Cell cell) {
-        return hasEnoughFood(cell) &&
-                safeFromPredators(cell) &&
-                enoughMates(cell);
-    }
+        boolean food = cell.getAllOrganisms().stream()
+                .anyMatch(o -> o instanceof Plant);
 
-    private boolean hasEnoughFood(Cell cell) {
+        boolean safe = cell.getAllOrganisms().stream()
+                .noneMatch(o -> o instanceof Predator);
 
-        return false;
-    }
-
-    private boolean safeFromPredators(Cell cell) {
-
-        return false;
-    }
-
-    private boolean enoughMates(Cell cell) {
-
-        return false;
+        return food && safe;
     }
 
 }

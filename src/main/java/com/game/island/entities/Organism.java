@@ -30,6 +30,9 @@ public abstract class Organism implements Reproducible, Eater, Movable {
         return id;
     }
     public double getReproduceChance(){return CONFIG.getReproduceChance();}
+    public String getIcon() {
+        return CONFIG.getIcon();
+    }
 
 
     /*1*/@Override
