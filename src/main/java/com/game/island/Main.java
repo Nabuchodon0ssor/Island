@@ -25,13 +25,19 @@ public class Main {
         // Размещаем травоядных
         Cell randomCell = island.getCell(0, 0);
         randomCell.addOrganism(new Horse(randomCell));
+        randomCell = island.getCell(4, 4);
+        randomCell.addOrganism(new Horse(randomCell));
+        randomCell = island.getCell(1, 2);
+        randomCell.addOrganism(new Horse(randomCell));
+        randomCell = island.getCell(3, 4);
+        randomCell.addOrganism(new Horse(randomCell));
 
         randomCell = island.getCell(2, 2);
         randomCell.addOrganism(new Wolf(randomCell));
+        randomCell = island.getCell(0, 3);
+        randomCell.addOrganism(new Wolf(randomCell));
 
-        // Размещаем хищников
-        randomCell = island.getCell(4, 4);
-        randomCell.addOrganism(new Horse(randomCell));
+
 
 
         SimulationEngine engine = new SimulationEngine(island,0);
