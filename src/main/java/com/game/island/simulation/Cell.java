@@ -57,7 +57,8 @@ public class Cell {
     }
 
     public List<Organism> getOrganismsByType(Class<? extends Organism> type) {
-        return Collections.unmodifiableList(organisms.getOrDefault(type, Collections.emptyList()));
+        List<Organism> original = organisms.getOrDefault(type, Collections.emptyList());
+           return List.copyOf(original);
     }
 
     public boolean hasOrganismType(Class<? extends Organism> type) {
