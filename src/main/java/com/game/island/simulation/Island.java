@@ -1,5 +1,7 @@
 package com.game.island.simulation;
 
+import com.game.island.entities.Organism;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -58,5 +60,14 @@ public class Island {
 
     public List<Cell> getAllCells() {
         return Collections.unmodifiableList(allCells);
+    }
+
+    public boolean hasOrganismType(Class<? extends Organism> type) {
+        for (Cell cell : getAllCells()) {
+            if (cell.hasOrganismType(type)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

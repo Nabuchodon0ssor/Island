@@ -2,6 +2,7 @@ package com.game.island.simulation;
 
 
 import com.game.island.entities.Organism;
+import com.game.island.ui.ConsolePrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,14 @@ public class SimulationEngine {
         runPhase(Organism::eat);
         runPhase(Organism::reproduce);
         runPhase(Organism::loseWeight);
+
+        ConsolePrinter.printIsland(island);
+
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     private void runPhase(Consumer<Organism> action) {
