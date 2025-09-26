@@ -17,8 +17,9 @@ public class Plant extends Organism implements Reproducible {
 
     @Override
     public void reproduce() {
-        double chance = getReproduceChance(); // читаем из yaml
-        if (Math.random() < chance) {
+        double chance = getReproduceChance();
+        long count = currentCell.getOrganismsByType(Plant.class).size();
+        if (count < getMaxAmount() && Math.random() < chance) {
             Plant child = new Plant(currentCell);
             currentCell.addOrganism(child);
         }

@@ -44,7 +44,7 @@ public class Main {
 
 
 
-        while (island.hasOrganismType(Predator.class) && island.hasOrganismType(Herbivore.class)) {
+        while (true) {
             engine.tick();
         }
 
