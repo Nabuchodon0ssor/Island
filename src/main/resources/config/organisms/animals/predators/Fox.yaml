@@ -1,0 +1,25 @@
+name: Fox
+icon: "🦊"
+maxWeight: 8
+maxAmount: 30
+maxSpeed: 2
+maxFood: 2
+reproduceChance: 0.2
+
+diet:
+  Wolf: 0
+  Boa: 0
+  Fox: 0
+  Bear: 0
+  Eagle: 0
+  Horse: 0
+  Deer: 0
+  Rabbit: 70
+  Mouse: 90
+  Goat: 0
+  Sheep: 0
+  Boar: 0
+  Buffalo: 0
+  Duck: 60
+  Caterpillar: 40
+  Plant: 0

@@ -1,0 +1,25 @@
+name: Bear
+icon: "🐻"
+maxWeight: 500
+maxAmount: 5
+maxSpeed: 2
+maxFood: 80
+reproduceChance: 0.2
+
+diet:
+  Wolf: 0
+  Boa: 80
+  Fox: 15
+  Bear: 0
+  Eagle: 0
+  Horse: 40
+  Deer: 80
+  Rabbit: 80
+  Mouse: 90
+  Goat: 70
+  Sheep: 70
+  Boar: 50
+  Buffalo: 20
+  Duck: 10
+  Caterpillar: 0
+  Plant: 0

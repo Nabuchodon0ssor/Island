@@ -1,0 +1,26 @@
+name: Goat
+
+icon: "🐐"
+maxWeight: 60
+maxAmount: 140
+maxSpeed: 3
+maxFood: 10
+reproduceChance: 0.3
+
+diet:
+  Wolf: 0
+  Boa: 0
+  Fox: 0
+  Bear: 0
+  Eagle: 0
+  Horse: 0
+  Deer: 0
+  Rabbit: 0
+  Mouse: 0
+  Goat: 0
+  Sheep: 0
+  Boar: 0
+  Buffalo: 0
+  Duck: 0
+  Caterpillar: 0
+  Plant: 100

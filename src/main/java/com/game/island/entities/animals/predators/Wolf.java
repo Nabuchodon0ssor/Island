@@ -9,7 +9,7 @@ import com.game.island.util.ConfigLoader;
 
 public class Wolf extends Predator {
     private static final OrganismConfig CONFIG =
-            ConfigLoader.load("/config/organisms/animals/predators/wolf.yaml", OrganismConfig.class);
+            ConfigLoader.load("/config/organisms/animals/predators/Wolf.yaml", OrganismConfig.class);
 
     public Wolf(Cell cell) {
         super(cell, CONFIG);
