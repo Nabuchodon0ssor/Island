@@ -2,8 +2,6 @@ package com.game.island;
 
 
 import com.game.island.entities.Plant;
-import com.game.island.entities.animals.Herbivore;
-import com.game.island.entities.animals.Predator;
 import com.game.island.entities.animals.herbivores.Horse;
 import com.game.island.entities.animals.predators.Wolf;
 import com.game.island.simulation.Cell;
@@ -18,7 +16,7 @@ public class Main {
 
 
         for (Cell cell : island.getAllCells()) {
-            int plants = 10 ;
+            int plants = 100 ;
             for (int i = 0; i < plants; i++) {
                 cell.addOrganism(new Plant(cell));
             }
@@ -38,10 +36,6 @@ public class Main {
         randomCell.addOrganism(new Wolf(randomCell));
         randomCell = island.getCell(0, 3);
         randomCell.addOrganism(new Wolf(randomCell));
-
-
-
-
 
 
         while (true) {

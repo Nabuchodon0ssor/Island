@@ -5,7 +5,6 @@ import com.game.island.entities.interfaces.Reproducible;
 import com.game.island.simulation.Cell;
 import com.game.island.util.ConfigLoader;
 
-import java.util.List;
 
 public class Plant extends Organism implements Reproducible {
     private static final OrganismConfig CONFIG =

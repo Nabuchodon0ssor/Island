@@ -61,6 +61,9 @@ public class Island {
     public List<Cell> getAllCells() {
         return Collections.unmodifiableList(allCells);
     }
+    public Cell[][] getGrid() {
+        return grid;
+    }
 
     public boolean hasOrganismType(Class<? extends Organism> type) {
         for (Cell cell : getAllCells()) {

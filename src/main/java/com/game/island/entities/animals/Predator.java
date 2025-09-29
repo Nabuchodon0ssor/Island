@@ -22,6 +22,7 @@ public abstract class Predator extends Animal {
 
         for (Organism o : organisms) {
             if (needed <= 0) break;
+            if (o == null) continue;
             if (!o.isAlive()) continue;
             if (o == this) continue;
 
