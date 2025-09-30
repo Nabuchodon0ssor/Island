@@ -5,12 +5,12 @@ import com.game.island.entities.animals.Herbivore;
 import com.game.island.simulation.Cell;
 import com.game.island.util.ConfigLoader;
 
-
-public class Horse extends Herbivore {
+public class Goat extends Herbivore {
     private static final OrganismConfig CONFIG =
-            ConfigLoader.load("/config/organisms/animals/herbivores/Horse.yaml", OrganismConfig.class);
+            ConfigLoader.load("/config/organisms/animals/herbivores/Goat.yaml", OrganismConfig.class);
 
-    public Horse(Cell cell) {
+    public Goat(Cell cell) {
         super(cell, CONFIG);
     }
+
 }

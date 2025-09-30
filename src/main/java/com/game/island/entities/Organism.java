@@ -34,7 +34,6 @@ public abstract class Organism implements Reproducible, Eater, Movable {
         return CONFIG.getIcon();
     }
 
-
     /*1*/@Override
     public void move() {
         // default, plants don't move
@@ -52,10 +51,6 @@ public abstract class Organism implements Reproducible, Eater, Movable {
     public void loseWeight() {
         // default, plants don't lose weight (in this simulation at least)
     }
-
-    @Override
-    public abstract boolean canReproduceWith(Organism other);
-
 
     public boolean isAlive() {
         return alive;
