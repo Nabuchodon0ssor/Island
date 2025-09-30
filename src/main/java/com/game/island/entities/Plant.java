@@ -23,9 +23,4 @@ public class Plant extends Organism implements Reproducible {
             currentCell.addOrganism(child);
         }
     }
-
-    @Override
-    public boolean canReproduceWith(Organism other) {
-        return other instanceof Plant;
-    }
 }
