@@ -45,13 +45,14 @@ Step 2:
 
 1. Clone this repository:
   ```bash
-  git clone https://github.com/Nabuchodon0ssor/Island.git
-
+  git clone https://github.com/Nabuchodon0ssor/Island.git 
+```
 2. Open the project in your favorite Java IDE (e.g., IntelliJ IDEA or Eclipse).
 3. Make sure you have:
   ```bash
   Java 17+
   Maven enabled (IDE will detect pom.xml)
+```
 4. Run the Main.java file:
   ```bash
   File location: src/main/java/com/game/island/Main.java
