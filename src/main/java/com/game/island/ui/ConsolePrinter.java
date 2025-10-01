@@ -12,40 +12,83 @@ import java.util.stream.Collectors;
 
 public class ConsolePrinter {
 
-    private static final int CELL_WIDTH = 12; // фиксированная ширина ячейки
-    private static final int MAX_TYPES_PER_CELL = 3; // максимум видов для отображения
+    private static final int CELL_COLUMNS = 3;  // сколько организмов в строке клетки
+    private static final int CELL_ROWS = 5;     // сколько строк внутри клетки
 
     public static void printIsland(Island island) {
         clearConsole();
 
-        List<Cell> cells = island.getAllCells();
 
-        StringBuilder sb = new StringBuilder();
+        List<Cell> cells = island.getAllCells();
         int width = island.getWidth();
 
-        for (int i = 0; i < cells.size(); i++) {
-            String cellStr = formatCell(cells.get(i));
-            sb.append(String.format("[%-" + CELL_WIDTH + "s]", cellStr)); // выравнивание
-            if ((i + 1) % width == 0) sb.append("\n");
+        // Преобразуем каждую клетку в список строк (рамка + содержимое)
+        List<List<String>> renderedCells = cells.stream()
+                .map(ConsolePrinter::renderCell)
+                .toList();
+
+        // Каждая клетка = N строк, печатаем "построчно"
+        int cellHeight = renderedCells.get(0).size();
+
+        for (int row = 0; row < cells.size() / width; row++) {
+            for (int line = 0; line < cellHeight; line++) {
+                for (int col = 0; col < width; col++) {
+                    int idx = row * width + col;
+                    System.out.print(renderedCells.get(idx).get(line) + " ");
+                }
+                System.out.println();
+            }
         }
 
-        System.out.println(sb);
+        // Статистика
         printStatistic(island);
     }
 
-    private static String formatCell(Cell cell) {
-        if (cell.getAllOrganisms().isEmpty()) {
-            return " ";
-        }
-
+    private static List<String> renderCell(Cell cell) {
         Map<String, Long> grouped = cell.getAllOrganisms().stream()
                 .collect(Collectors.groupingBy(Organism::getIcon, Collectors.counting()));
 
-        return grouped.entrySet().stream()
-                .sorted((e1, e2) -> Long.compare(e2.getValue(), e1.getValue())) // сначала самые многочисленные
-                .limit(MAX_TYPES_PER_CELL)
+        List<String> entries = grouped.entrySet().stream()
                 .map(e -> e.getKey() + "x" + e.getValue())
-                .collect(Collectors.joining(" "));
+                .toList();
+
+        // Разбиваем на строки по CELL_COLUMNS элементов
+        List<String> lines = new ArrayList<>();
+        for (int i = 0; i < entries.size(); i += CELL_COLUMNS) {
+            lines.add(
+                    entries.subList(i, Math.min(i + CELL_COLUMNS, entries.size()))
+                            .stream()
+                            .collect(Collectors.joining(" "))
+            );
+        }
+
+        // если строк меньше, чем CELL_ROWS → добавляем пустые
+        while (lines.size() < CELL_ROWS) {
+            lines.add("");
+        }
+
+        // обрезаем лишние строки (если организмов слишком много)
+        if (lines.size() > CELL_ROWS) {
+            lines = lines.subList(0, CELL_ROWS);
+            int lastIdx = CELL_ROWS - 1;
+            lines.set(lastIdx, "..."); // знак, что не всё влезло
+        }
+
+        int maxWidth = lines.stream().mapToInt(String::length).max().orElse(1);
+
+        // Добавляем рамку
+        List<String> box = new ArrayList<>();
+        String top = "┌" + "─".repeat(maxWidth + 2) + "┐";
+        String bottom = "└" + "─".repeat(maxWidth + 2) + "┘";
+        box.add(top);
+
+        for (String line : lines) {
+            String padded = String.format("%-" + maxWidth + "s", line);
+            box.add("│ " + padded + " │");
+        }
+
+        box.add(bottom);
+        return box;
     }
 
     private static void printStatistic(Island island) {
@@ -61,14 +104,15 @@ public class ConsolePrinter {
             }
         }
 
-        System.out.println("===== 📊 СТАТИСТИКА =====");
-        System.out.printf("🌿 Растений: %d | 🐎 Травоядных: %d | 🐺 Хищников: %d%n",
+        System.out.println();
+        System.out.printf("🌿 Растений: %d   🐑 Травоядных: %d   🐺 Хищников: %d%n",
                 plants, herbivores, predators);
     }
 
     private static void clearConsole() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        for (int i = 0; i < 5; i++) {
+            System.out.println();
+        }
     }
 }
 
