@@ -23,7 +23,7 @@ public class PopulationInitializer {
 
     private void populatePlants() {
         for (Cell cell : island.getAllCells()) {
-            int plants = 100;
+            int plants = 500;
             for (int i = 0; i < plants; i++) {
                 cell.addOrganism(new Plant(cell));
             }
@@ -42,7 +42,7 @@ public class PopulationInitializer {
             try {
                 Animal temp = type.getConstructor(Cell.class).newInstance((Cell) null);
                 int maxPerCell = temp.getMaxAmount();
-                int totalOnMap = (int) (maxPerCell * 0.2 * island.getAllCells().size());
+                int totalOnMap = (int) (maxPerCell * 0.05 * island.getAllCells().size());
 
                 Constructor<? extends Animal> constructor = type.getConstructor(Cell.class);
 

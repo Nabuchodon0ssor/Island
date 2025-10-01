@@ -1,7 +1,7 @@
 name: Plant
 icon: "🌿"
 maxWeight: 1
-maxAmount: 200
+maxAmount: 500
 maxSpeed: 0
 maxFood: 0
 reproduceChance: 0.5
