@@ -57,8 +57,13 @@ public class Cell {
     }
 
     public List<Organism> getOrganismsByType(Class<? extends Organism> type) {
-        List<Organism> original = organisms.getOrDefault(type, Collections.emptyList());
-           return List.copyOf(original);
+        List<Organism> result = new ArrayList<>();
+        for (Map.Entry<Class<? extends Organism>, List<Organism>> entry : organisms.entrySet()) {
+            if (type.isAssignableFrom(entry.getKey())) {
+                result.addAll(entry.getValue());
+            }
+        }
+        return result;
     }
 
     public boolean hasOrganismType(Class<? extends Organism> type) {
