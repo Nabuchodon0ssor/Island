@@ -30,16 +30,8 @@ This project demonstrates Object-Oriented Programming (OOP) principles by modeli
 - 🧩 OOP structure — clear inheritance hierarchy and polymorphism.
 - 📊 Console visualization — island state is displayed directly in the terminal.
 
-## Example Console Output
-Step 1:
-🌱 🐇 🐺 . .
-. 🌱 🌱 🐇 🐍
-. . 🌱 . 🐺
-
-Step 2:
-🌱 🐇 . 🐺 .
-. 🌱 🐇 🌱 🐍
-. . 🌱 🐺 .
+## Screenshots
+![Screenshot](Images/Screenshot.png)
 
 ## How to Run
 
